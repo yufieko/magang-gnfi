@@ -54,3 +54,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['halo/(:any)'] = 'login/halo/$1';
+$route['edit/(:num)'] = 'update/edit/$1';
