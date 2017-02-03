@@ -5,7 +5,11 @@ class Read extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('read');
+		$this->load->model('user_model');
+
+		$data['users'] = $this->user_model->get_list();
+
+		$this->load->view('read',$data);
 	}
 
 }

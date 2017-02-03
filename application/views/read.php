@@ -12,16 +12,24 @@
 			<th>created</th>
 			<th>action</th>
 		</tr>
-		<?php for($i=0;$i<2;$i++): ?>
+		<?php 
+			if(!empty($users)): 
+				foreach($users as $user):
+		?>
 		<tr>
-			<td>id</td>
-			<td>username</td>
-			<td>name</td>
-			<td>email</td>
-			<td>created</td>
-			<td><a href="#">edit</a> | <a href="#">delete</a></td>
+			<td><?=$user->id?></td>
+			<td><?=$user->username?></td>
+			<td><?=$user->name?></td>
+			<td><?=$user->email?></td>
+			<td><?=$user->created?></td>
+			<td><a href="<?=site_url('edit/'.$user->id)?>">edit</a> | <a href="<?=site_url('delete/'.$user->id)?>">delete</a></td>
 		</tr>
-		<?php endfor; ?>
+		<?php endforeach; else: ?>
+		<tr>
+			<td colspan="5">Belum ada user</td>
+		</tr>
+		<?php endif; ?>
+
 	</table>
 </body>
 </html>
