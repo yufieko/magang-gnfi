@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Create extends CI_Controller {
+class Create extends Dashboard_Controller {
 
 	public function __construct()
 	{

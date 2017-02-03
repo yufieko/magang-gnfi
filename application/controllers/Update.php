@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Update extends CI_Controller {
+class Update extends Dashboard_Controller {
 
 	public function __construct()
 	{

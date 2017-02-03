@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Read extends CI_Controller {
+class Read extends Dashboard_Controller {
 
 	public function index()
 	{

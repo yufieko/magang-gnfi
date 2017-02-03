@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Delete extends CI_Controller
+class Delete extends Dashboard_Controller
 
  {
 	 

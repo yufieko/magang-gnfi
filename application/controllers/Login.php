@@ -3,21 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+	
+	public function __construct()
+	{
+		parent::__construct();
+		if(!empty($this->session->username)){
+			redirect('read','refresh');
+		}
+	}
+
 	public function index()
 	{
 		$this->load->view('v_login');
@@ -27,6 +21,12 @@ class Login extends CI_Controller {
 	public function halo($string)
 	{
 		echo "Haloo " . $string;
+	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('login');
 	}
 
 	public function aksi_login()
@@ -40,13 +40,12 @@ class Login extends CI_Controller {
 			$username = $this->input->post('username');
 	    	$password = $this->input->post('password');
 		    $data = array(
-		      'username' => $username,
-		      'password' => secure_password($password)
+		      'username' => $username
 		    );
 
 		    $cek = $this->user_model->select_where($data);
 	    
-		    if (!empty($cek)) {
+		    if (!empty($cek) && password_verify($password,$cek->password)) {
 
         		$data_session['id'] = $cek->id;
 				$data_session['name'] = $cek->name;

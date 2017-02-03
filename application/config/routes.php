@@ -56,4 +56,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route['halo/(:any)'] = 'login/halo/$1';
 $route['edit/(:num)'] = 'update/edit/$1';
 $route['delete/(:num)'] = 'delete/view/$1';
-
+$route['logout'] = 'logout/doit';
