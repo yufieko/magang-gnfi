@@ -46,18 +46,32 @@ class Delete extends Dashboard_Controller
 			$cek = $this->user_model->delete($user_id);
 			if($cek) 
 			{
-				echo $username . " berhasil dihapus";
+				$result = array(
+		      		'status' => true,
+		      		'message' => 'berhasil dihapus',
+		      		'redirect' => site_url('read')
+		      	);
 			}
 			else 
 			{
-				echo "gagal bro";
+				$result = array(
+		      		'status' => false,
+		      		'message' => 'gagal dihapus',
+		      		'redirect' => site_url('read')
+		      	);
 			}
 		}
 		else
 		{
-			echo validation_errors();
+			$result = array(
+	      		'status' => false,
+	      		'message' => validation_errors()
+	      	);
 		}
 		
-		// redirect('');
+		$this->output
+			->set_content_type("application/json")
+			->set_output(json_encode($result));
+
 	}
  }	
