@@ -53,15 +53,31 @@ class Login extends CI_Controller {
 
 
 		      	$this->session->set_userdata($data_session);
-		      	redirect('read','refresh');
+		      	// redirect('read','refresh');
+		      	$result = array(
+		      		'status' => true,
+		      		'message' => 'Berhasil login',
+		      		'redirect' => site_url('read')
+		      	);
 	  		} else {
-				die('username atau password anda salah');
+				// die('username atau password anda salah');
+				$result = array(
+		      		'status' => false,
+		      		'message' => 'Username atau password anda salah'
+		      	);
 			}
 		}
 		else
 		{
-			echo validation_errors();
+			$result = array(
+	      		'status' => false,
+	      		'message' => validation_errors()
+	      	);
 		}
+
+		$this->output
+			->set_content_type("application/json")
+			->set_output(json_encode($result));
 
 	}   
 
